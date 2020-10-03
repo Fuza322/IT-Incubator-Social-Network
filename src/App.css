@@ -1,11 +1,16 @@
 .app-wrapper {
-  display: grid;
-  width: 100%;
-  grid-template-areas:
-  'h h'
-  'n c';
+    display: grid;
+    width: 100%;
+    grid-template-areas:
+    'h h'
+    'n c';
 
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 2px;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 2px;
+}
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: cornflowerblue;
 }
