@@ -17,18 +17,19 @@ function DialogItem(props: DialogItemPropsType) {
     )
 }
 
-type MessageType = {
+type MessagePropsType = {
     id: string
     message: string
 }
 
-function Message(props: MessageType) {
+function Message(props: MessagePropsType) {
     return (
         <div className={s.message}>{props.message}</div>
     )
 }
 
 function Dialogs() {
+
     let dialogsData = [
         {id: '1', name: 'Dimych'},
         {id: '2', name: 'Andrey'},
@@ -38,7 +39,7 @@ function Dialogs() {
         {id: '6', name: 'Valera'}
     ]
 
-    let messagesData: Array<MessageType> = [
+    let messagesData = [
         {id: '1', message: 'Hi'},
         {id: '2', message: 'How is your it-kamasutra?'},
         {id: '3', message: 'Yo'},
@@ -50,21 +51,11 @@ function Dialogs() {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem id={dialogsData[0].id} name={dialogsData[0].name}/>
-                <DialogItem id={dialogsData[1].id} name={dialogsData[1].name}/>
-                <DialogItem id={dialogsData[2].id} name={dialogsData[2].name}/>
-                <DialogItem id={dialogsData[3].id} name={dialogsData[3].name}/>
-                <DialogItem id={dialogsData[4].id} name={dialogsData[4].name}/>
-                <DialogItem id={dialogsData[5].id} name={dialogsData[5].name}/>
+                {dialogsData.map(d => {return (<DialogItem id={d.id} name={d.name}/>)})}
 
             </div>
             <div className={s.messages}>
-                <Message message={messagesData[0].message} id={messagesData[0].id}/>
-                <Message message={messagesData[1].message} id={messagesData[1].id}/>
-                <Message message={messagesData[2].message} id={messagesData[2].id}/>
-                <Message message={messagesData[3].message} id={messagesData[3].id}/>
-                <Message message={messagesData[4].message} id={messagesData[4].id}/>
-                <Message message={messagesData[5].message} id={messagesData[5].id}/>
+                {messagesData.map(d => {return (<Message id={d.id} message={d.message}/>)})}
             </div>
         </div>
     )

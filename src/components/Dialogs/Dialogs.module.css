@@ -5,20 +5,17 @@
 
 .dialogsItems {
     padding: 10px;
+    color: white;
 }
 
 .dialogsItems .active {
     color: gold;
 }
 
-.dialog {
-
-}
-
 .messages {
     padding: 10px;
 }
 
-.message {
-
+.messages .massage {
+    color: white;
 }
