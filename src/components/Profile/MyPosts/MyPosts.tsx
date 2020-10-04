@@ -6,8 +6,10 @@ function MyPosts() {
     return (
         <div>
             My post
-            <div>
-                <textarea></textarea>
+            <div className={s.postsBlock}>
+                <div>
+                    <textarea></textarea>
+                </div>
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
