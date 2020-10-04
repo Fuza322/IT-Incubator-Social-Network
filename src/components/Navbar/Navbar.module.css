@@ -3,12 +3,11 @@
     background-color: burlywood;
     padding: 15px;
 }
-
 .item a {
     color: white;
     text-decoration: none;
 }
 
-.item a:hover {
+.item.active {
     color: gold;
 }
