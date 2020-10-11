@@ -14,6 +14,7 @@ function MyPosts() {
         {id: '1', message: 'Hi, how are you?', likesCount: 12},
         {id: '2', message: 'It is my first post', likesCount: 11}
     ]
+    let postsElements = postData.map(p => <Post message={p.message} likesCount={p.likesCount} />)
     return (
         <div>
             My post
@@ -24,7 +25,7 @@ function MyPosts() {
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
-                {postData.map(p => {return (<Post message={p.message} likesCount={p.likesCount}/>)})}
+                {postsElements}
             </div>
         </div>
     )
