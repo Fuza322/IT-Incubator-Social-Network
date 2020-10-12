@@ -1,12 +1,12 @@
 import React from 'react'
 import s from './../Dialogs.module.css'
 
-type MessagePropsType = {
-    id: string
+export type MessageType = {
+    id: number
     message: string
 }
 
-function Message(props: MessagePropsType) {
+function Message(props: MessageType) {
     return (
         <div className={s.message}>{props.message}</div>
     )
