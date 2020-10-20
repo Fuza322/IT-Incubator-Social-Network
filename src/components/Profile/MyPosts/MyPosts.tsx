@@ -7,14 +7,21 @@ function MyPosts(props: MyPostsType) {
 
     let postsElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />)
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
+
+    let addPost = () => {
+        let text = newPostElement.current?.value
+        alert(text)
+    }
+
     return (
         <div>
             My posts
             <div className={s.postsBlock}>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
-                <button>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {postsElements}
