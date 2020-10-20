@@ -1,3 +1,5 @@
+import {renderThree} from '../render';
+
 export type MessageType = {
     id: number
     message: string
@@ -71,6 +73,7 @@ export let addPost = (postMessage: string) => {
         likesCount: 0
     }
     state.profilePage.posts.push(newPost);
+    renderThree(state)
 }
 
 
