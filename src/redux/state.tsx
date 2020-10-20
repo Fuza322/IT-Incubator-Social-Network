@@ -1,24 +1,28 @@
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
 
-type DialogItemType = {
+export type DialogItemType = {
     id: number
     name: string
 }
 
-type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
 
-type ProfilePageType = {
+export type MyPostsType = {
     posts: Array<PostType>
 }
 
-type DialogPageType = {
+export type ProfilePageType = {
+    posts: Array<PostType>
+}
+
+export type DialogPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageType>
 }
@@ -38,7 +42,7 @@ let state: RootStateType = {
             {id: 2, message: 'It is my first post', likesCount: 11}
         ]
     },
-    dialogsPage : {
+    dialogsPage: {
         dialogs: [
             {id: 1, name: 'Dimych'},
             {id: 2, name: 'Andrey'},

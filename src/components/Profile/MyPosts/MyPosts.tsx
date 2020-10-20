@@ -1,10 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css'
-import Post, {PostType} from './Post/Post';
-
-export type MyPostsType = {
-    posts: Array<PostType>
-}
+import Post from './Post/Post';
+import {MyPostsType} from '../../../redux/state';
 
 function MyPosts(props: MyPostsType) {
 
@@ -12,7 +9,7 @@ function MyPosts(props: MyPostsType) {
 
     return (
         <div>
-            My post
+            My posts
             <div className={s.postsBlock}>
                 <div>
                     <textarea></textarea>
