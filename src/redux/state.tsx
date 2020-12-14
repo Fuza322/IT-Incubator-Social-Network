@@ -1,4 +1,6 @@
-import {renderThree} from '../render';
+let renderThree = () => {
+    console.log('State was changed')
+}
 
 export type MessageType = {
     id: number
@@ -70,8 +72,6 @@ let state: RootStateType = {
     /*sidebar: {}*/
 }
 
-
-/////
 export let addPost = () => {
     let newPost: PostType = {
         id: 5,
@@ -80,13 +80,15 @@ export let addPost = () => {
     }
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = ''
-    renderThree(state)
+    renderThree()
 }
 
     export let updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    renderThree(state)
+    renderThree()
 }
 
-
+export const subscribe = (observer: () => void) => {
+    renderThree = observer
+}
 export default state;
