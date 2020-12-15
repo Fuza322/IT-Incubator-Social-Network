@@ -4,14 +4,14 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {PostType} from '../../redux/state';
 
-export type ProfilePageType = {
+type ProfilePropsType = {
     posts: Array<PostType>
     newPostText: string
     addPost: () => void
     updateNewPostText: (newText: string) => void
 }
 
-function Profile(props: ProfilePageType) {
+function Profile(props: ProfilePropsType) {
 
     return (
         <div>

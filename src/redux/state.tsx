@@ -14,13 +14,6 @@ export type PostType = {
     likesCount: number
 }
 
-export type MyPostsType = {
-    posts: Array<PostType>
-    addPost: () => void
-    updateNewPostText: (newPostText: string) => void
-    newPostText: string
-}
-
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
