@@ -12,7 +12,6 @@ function MyPosts(props: MyPostsType) {
     let addPost = () => {
         if (newPostElement.current) {
             props.addPost()
-            // props.updateNewPostText('')
         }
     }
 

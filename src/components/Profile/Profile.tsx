@@ -2,7 +2,14 @@ import React from 'react';
 import s from './Profile.module.css'
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {addPost, ProfilePageType, updateNewPostText} from '../../redux/state';
+import {PostType} from '../../redux/state';
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+}
 
 function Profile(props: ProfilePageType) {
 
@@ -12,8 +19,8 @@ function Profile(props: ProfilePageType) {
             <MyPosts
                 posts={props.posts}
                 newPostText={props.newPostText}
-                addPost={addPost}
-                updateNewPostText={updateNewPostText}
+                addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
             />
         </div>
     )
