@@ -5,12 +5,11 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
-import {StoreType} from './redux/state'
+import {ActionsType, StoreType} from './redux/state'
 
 type AppPropsType = {
     store: StoreType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsType) => void
 }
 
 function App(props: AppPropsType) {
@@ -33,8 +32,7 @@ function App(props: AppPropsType) {
                         <Profile
                             posts={state.profilePage.posts}
                             newPostText={state.profilePage.newPostText}
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText}
+                            dispatch={props.dispatch}
                         /> }/>
                 </div>
             </div>

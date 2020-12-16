@@ -6,7 +6,10 @@ import store from './redux/state'
 
 export const renderThree = () => {
     ReactDOM.render(
-            <App store={store} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,
+            <App
+                store={store}
+                dispatch={store.dispatch.bind(store)}
+            />,
         document.getElementById('root')
     );
 }
