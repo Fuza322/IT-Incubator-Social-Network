@@ -21,7 +21,7 @@ function MyPosts(props: MyPostsPropsType) {
         }
     }
 
-    let onPostChange = () => {
+    let onNewPostChange = () => {
         if (newPostElement.current) {
             let newText = newPostElement.current.value
             props.dispatch(UpdateNewPostActionCreator(newText))
@@ -33,7 +33,7 @@ function MyPosts(props: MyPostsPropsType) {
             My posts
             <div className={s.postsBlock}>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                    <textarea onChange={onNewPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <button onClick={addPost}>Add post</button>
             </div>
