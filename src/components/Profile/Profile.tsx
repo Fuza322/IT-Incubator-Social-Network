@@ -1,8 +1,8 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {PostType} from '../../redux/state';
-import { ProfileActionsType } from '../../redux/profileReducer';
+import {PostType} from '../../redux/store';
+import {ProfileActionsType} from '../../redux/profile-reducer';
 
 type ProfilePropsType = {
     posts: Array<PostType>
@@ -11,10 +11,9 @@ type ProfilePropsType = {
 }
 
 function Profile(props: ProfilePropsType) {
-
     return (
         <div>
-            <ProfileInfo />
+            <ProfileInfo/>
             <MyPosts
                 posts={props.posts}
                 newPostText={props.newPostText}

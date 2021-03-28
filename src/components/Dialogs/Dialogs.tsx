@@ -4,10 +4,10 @@ import {
     DialogItemType,
     MessageType, SendMessageActionCreator,
     UpdateNewMessageTextActionCreator,
-} from '../../redux/state';
+} from '../../redux/store';
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
-import { DialogsActionsType } from '../../redux/dialogsReducer';
+import {DialogsActionsType} from '../../redux/dialogs-reducer';
 
 type DialogPropsType = {
     dialogs: Array<DialogItemType>
@@ -40,7 +40,6 @@ function Dialogs(props: DialogPropsType) {
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {dialogsElements}
-
             </div>
             <div className={s.messages}>
                 <div>{messagesElements}</div>
@@ -49,7 +48,8 @@ function Dialogs(props: DialogPropsType) {
                         <textarea value={newMessageText}
                                   onChange={onNewMessageChange}
                                   ref={newMessage}
-                                  placeholder='Enter your message'></textarea>
+                                  placeholder='Enter your message'>
+                        </textarea>
                     </div>
                     <div>
                         <button onClick={sendMessageClick}>Send</button>

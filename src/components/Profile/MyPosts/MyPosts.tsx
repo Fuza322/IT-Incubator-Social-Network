@@ -5,8 +5,8 @@ import {
     addPostActionCreator,
     PostType,
     UpdateNewPostActionCreator
-} from '../../../redux/state';
-import { ProfileActionsType } from '../../../redux/profileReducer';
+} from '../../../redux/store';
+import { ProfileActionsType } from '../../../redux/profile-reducer';
 
 type MyPostsPropsType = {
     posts: Array<PostType>
@@ -22,6 +22,7 @@ function MyPosts(props: MyPostsPropsType) {
 
     let addPost = () => {
         if (newPostElement.current) {
+            //
             props.dispatch(addPostActionCreator(props.newPostText))
         }
     }
@@ -29,6 +30,7 @@ function MyPosts(props: MyPostsPropsType) {
     let onNewPostChange = () => {
         if (newPostElement.current) {
             let newText = newPostElement.current.value
+            //
             props.dispatch(UpdateNewPostActionCreator(newText))
         }
     }
