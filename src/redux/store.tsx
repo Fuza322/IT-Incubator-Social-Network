@@ -15,22 +15,6 @@ import {
 } from "./dialogs-reducer";
 // import sidebarReducer from "./sidebarReducer";
 
-export type MessageType = {
-    id: number
-    message: string
-}
-
-export type DialogItemType = {
-    id: number
-    name: string
-}
-
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
 /*type SideBar = {}*/
 
 export type RootStateType = {
@@ -40,8 +24,8 @@ export type RootStateType = {
 }
 
 export type StoreType = {
-    _state: RootStateType
-    _callSubscriber: () => void
+    //_state: RootStateType
+    //_callSubscriber: () => void
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
     dispatch: (action: ActionsType) => void

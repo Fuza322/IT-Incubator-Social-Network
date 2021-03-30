@@ -1,4 +1,5 @@
-import {PostType, addPostActionCreator, UpdateNewPostActionCreator, ActionsType} from "./store";
+import {addPostActionCreator, UpdateNewPostActionCreator, ActionsType} from "./store";
+import {PostType} from "../components/Profile/MyPosts/Post/Post";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
