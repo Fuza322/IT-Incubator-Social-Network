@@ -2,19 +2,20 @@ import React, {ChangeEvent} from 'react'
 import s from './Dialogs.module.css'
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
-import {RootReduxStateType} from "../../redux/redux-store";
+import { DialogPageType } from '../../redux/dialogs-reducer';
 
 type DialogPropsType = {
-    state: RootReduxStateType
+    dialogs: DialogPageType
     updateNewMessageBody: (value: string) => void
     sendMessage: () => void
 }
 
+
 function Dialogs(props: DialogPropsType) {
 
-    let dialogsElements = props.state.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
-    let messagesElements = props.state.dialogsPage.messages.map(d => <Message id={d.id} message={d.message}/>)
-    let newMessageText = props.state.dialogsPage.newMessageText
+    let dialogsElements = props.dialogs.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
+    let messagesElements = props.dialogs.messages.map(d => <Message id={d.id} message={d.message}/>)
+    let newMessageText = props.dialogs.newMessageText
 
     let newMessage = React.createRef<HTMLTextAreaElement>()
 

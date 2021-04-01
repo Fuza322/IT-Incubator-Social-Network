@@ -13,25 +13,10 @@ import {
     SEND_MESSAGE,
     UPDATE_NEW_MESSAGE_TEXT
 } from "./dialogs-reducer";
+
 // import sidebarReducer from "./sidebarReducer";
 
-/*type SideBar = {}*/
-
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogPageType
-    /*sideBar: SideBar*/
-}
-
-export type StoreType = {
-    //_state: RootStateType
-    //_callSubscriber: () => void
-    getState: () => RootStateType
-    subscribe: (callback: () => void) => void
-    dispatch: (action: ActionsType) => void
-}
-
-export type ActionsType = DialogsActionsType | ProfileActionsType
+/*type SideBar = {}*
 
 // const store: StoreType = {
 //     _state: {
@@ -82,31 +67,3 @@ export type ActionsType = DialogsActionsType | ProfileActionsType
 //         this._callSubscriber()
 //     }
 // }
-
-export const addPostActionCreator = (newText: string) => {
-    return {
-        type: ADD_POST,
-        newText: newText
-    } as const
-}
-
-export const UpdateNewPostActionCreator = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}
-
-export const SendMessageActionCreator = (newText: string) => {
-    return {
-        type: SEND_MESSAGE,
-        newText: newText
-    } as const
-}
-
-export const UpdateNewMessageTextActionCreator = (newText: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newText: newText
-    } as const
-}

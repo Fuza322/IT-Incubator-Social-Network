@@ -1,6 +1,12 @@
 import {createStore, combineReducers} from "redux";
-import {profileReducer} from "./profile-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {ProfilePageType, profileReducer} from "./profile-reducer";
+import {DialogPageType, dialogsReducer} from "./dialogs-reducer";
+
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogPageType
+    /*sideBar: SideBar*/
+}
 
 let redusers = combineReducers({
     profilePage: profileReducer,

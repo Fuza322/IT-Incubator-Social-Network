@@ -4,7 +4,7 @@ import App from "./App";
 import './index.css';
 import store from './redux/redux-store'
 import {BrowserRouter} from "react-router-dom";
-import {Provider} from "./StoreContext";
+import { Provider } from "react-redux";
 
 const renderEntireThree = () => {
     ReactDOM.render(
@@ -23,15 +23,3 @@ store.subscribe(() => {
         renderEntireThree()
     }
 )
-
-
-// renderEntireThree(store.getState())
-//
-// store.subscribe(() => {
-//         let state = store.getState()
-//         renderEntireThree(state)
-//     }
-// )
-
-
-

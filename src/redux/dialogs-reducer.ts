@@ -1,6 +1,6 @@
-import {ActionsType, SendMessageActionCreator, UpdateNewMessageTextActionCreator} from "./store";
 import {DialogItemType} from "../components/Dialogs/DialogItem/DialogItem";
 import {MessageType} from "../components/Dialogs/Message/Message";
+import { ActionsType } from "./profile-reducer";
 
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_MESSAGE = 'SEND-MESSAGE'
@@ -39,13 +39,26 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Act
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
             state.newMessageText = action.newText
-            return state
+            return {...state}
         case SEND_MESSAGE:
-            let newText = state.newMessageText = action.newText
+            let newText = state.newMessageText
             state.newMessageText = ''
             state.messages.push({id: 7, message: newText})
-            return state
+            return {...state}
         default:
             return state
     }
+}
+
+export const SendMessageActionCreator = () => {
+    return {
+        type: SEND_MESSAGE
+    } as const
+}
+
+export const UpdateNewMessageTextActionCreator = (newText: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newText: newText
+    } as const
 }

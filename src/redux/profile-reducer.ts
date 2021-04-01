@@ -1,8 +1,10 @@
-import {addPostActionCreator, UpdateNewPostActionCreator, ActionsType} from "./store";
 import {PostType} from "../components/Profile/MyPosts/Post/Post";
+import {DialogsActionsType} from "./dialogs-reducer";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+
+export type ActionsType = DialogsActionsType | ProfileActionsType
 
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -24,16 +26,29 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         case ADD_POST:
             let newPost: PostType = {
                 id: 5,
-                message: action.newText,
+                message: state.newPostText,
                 likesCount: 0
             }
             state.posts.push(newPost);
             state.newPostText = ''
-            return state
+            return {...state}
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newText
-            return state
+            return {...state}
         default:
             return state
     }
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    } as const
+}
+
+export const UpdateNewPostActionCreator = (newText: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: newText
+    } as const
 }
