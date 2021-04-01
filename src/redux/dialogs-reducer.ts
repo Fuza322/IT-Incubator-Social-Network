@@ -1,6 +1,6 @@
 import {DialogItemType} from "../components/Dialogs/DialogItem/DialogItem";
 import {MessageType} from "../components/Dialogs/Message/Message";
-import { ActionsType } from "./profile-reducer";
+import {ActionsType} from "./profile-reducer";
 
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_MESSAGE = 'SEND-MESSAGE'
@@ -8,7 +8,7 @@ export const SEND_MESSAGE = 'SEND-MESSAGE'
 export type DialogPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageType>
-    newMessageText: string
+    newMessageBody: string
 }
 
 export type DialogsActionsType =
@@ -32,19 +32,25 @@ let initialState = {
         {id: 5, message: 'Yo'},
         {id: 6, message: 'Yo'}
     ],
-    newMessageText: ''
+    newMessageBody: ''
 }
 
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText
-            return {...state}
-        case SEND_MESSAGE:
-            let newText = state.newMessageText
-            state.newMessageText = ''
-            state.messages.push({id: 7, message: newText})
-            return {...state}
+        case UPDATE_NEW_MESSAGE_TEXT: {
+            return {
+                ...state,
+                newMessageBody: action.body
+            }
+        }
+        case SEND_MESSAGE: {
+            let body = state.newMessageBody
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: 7, message: body}]
+            }
+        }
         default:
             return state
     }
@@ -59,6 +65,6 @@ export const SendMessageActionCreator = () => {
 export const UpdateNewMessageTextActionCreator = (newText: string) => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,
-        newText: newText
+        body: newText
     } as const
 }

@@ -13,15 +13,15 @@ type DialogPropsType = {
 
 function Dialogs(props: DialogPropsType) {
 
-    let dialogsElements = props.dialogs.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
-    let messagesElements = props.dialogs.messages.map(d => <Message id={d.id} message={d.message}/>)
-    let newMessageText = props.dialogs.newMessageText
+    let dialogsElements = props.dialogs.dialogs.map(d => <DialogItem id={d.id} key={d.id} name={d.name}/>)
+    let messagesElements = props.dialogs.messages.map(d => <Message id={d.id} key={d.id} message={d.message}/>)
+    let newMessageBody = props.dialogs.newMessageBody
 
     let newMessage = React.createRef<HTMLTextAreaElement>()
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newText = e.currentTarget.value
-        props.updateNewMessageBody(newText)
+        let body = e.currentTarget.value
+        props.updateNewMessageBody(body)
     }
 
     let onSendMessageClick = () => {
@@ -37,7 +37,7 @@ function Dialogs(props: DialogPropsType) {
                 <div>{messagesElements}</div>
                 <div>
                     <div>
-                        <textarea value={newMessageText}
+                        <textarea value={newMessageBody}
                                   onChange={onNewMessageChange}
                                   ref={newMessage}
                                   placeholder='Enter your message'>
