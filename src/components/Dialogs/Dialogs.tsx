@@ -1,8 +1,8 @@
-import React, {ChangeEvent} from 'react'
-import s from './Dialogs.module.css'
-import Message from './Message/Message';
-import DialogItem from './DialogItem/DialogItem';
-import { DialogPageType } from '../../redux/dialogs-reducer';
+import React, {ChangeEvent} from "react"
+import Message from "./Message/Message"
+import DialogItem from "./DialogItem/DialogItem"
+import {DialogPageType} from "../../redux/dialogs-reducer"
+import s from "./Dialogs.module.css"
 
 type DialogPropsType = {
     dialogs: DialogPageType
@@ -40,7 +40,7 @@ function Dialogs(props: DialogPropsType) {
                         <textarea value={newMessageBody}
                                   onChange={onNewMessageChange}
                                   ref={newMessage}
-                                  placeholder='Enter your message'>
+                                  placeholder="Enter your message">
                         </textarea>
                     </div>
                     <div>
@@ -52,4 +52,4 @@ function Dialogs(props: DialogPropsType) {
     )
 }
 
-export default Dialogs;
+export default Dialogs

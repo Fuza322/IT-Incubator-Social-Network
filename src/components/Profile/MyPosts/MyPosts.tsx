@@ -1,6 +1,6 @@
-import React from 'react';
-import s from './MyPosts.module.css'
-import Post, {PostType} from './Post/Post';
+import React from "react"
+import Post, {PostType} from "./Post/Post"
+import s from "./MyPosts.module.css"
 
 type MyPostsPropsType = {
     posts: Array<PostType>
@@ -44,4 +44,4 @@ function MyPosts(props: MyPostsPropsType) {
     )
 }
 
-export default MyPosts;
+export default MyPosts

@@ -1,5 +1,5 @@
-import React from 'react'
-import s from './../Dialogs.module.css'
+import React from "react"
+import s from "./../Dialogs.module.css"
 
 export type MessageType = {
     id: number
@@ -12,4 +12,4 @@ function Message(props: MessageType) {
     )
 }
 
-export default Message;
+export default Message

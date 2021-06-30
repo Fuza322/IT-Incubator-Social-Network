@@ -1,8 +1,8 @@
-import React from 'react'
-import Dialogs from "./Dialogs";
-import {connect} from "react-redux";
-import {UpdateNewMessageTextActionCreator, SendMessageActionCreator} from "../../redux/dialogs-reducer";
-import { RootStateType } from '../../redux/redux-store';
+import React from "react"
+import {connect} from "react-redux"
+import {UpdateNewMessageTextActionCreator, SendMessageActionCreator} from "../../redux/dialogs-reducer"
+import Dialogs from "./Dialogs"
+import {RootStateType} from "../../redux/redux-store"
 
 let mapStateToProps = (state: RootStateType) => {
     return {
@@ -21,6 +21,6 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
-export default DialogsContainer;
+export default DialogsContainer

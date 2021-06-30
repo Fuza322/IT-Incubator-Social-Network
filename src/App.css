@@ -2,8 +2,8 @@
     display: grid;
     width: 100%;
     grid-template-areas:
-        'h h'
-        'n c';
+        "h h"
+        "n c";
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     grid-gap: 2px;
@@ -12,6 +12,5 @@
 .app-wrapper-content {
     padding: 10px;
     background-color: cornflowerblue;
-
     grid-area: c;
 }

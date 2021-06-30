@@ -1,8 +1,8 @@
-import React from 'react';
-import MyPosts from "./MyPosts";
-import {connect} from "react-redux";
-import { UpdateNewPostActionCreator, addPostActionCreator } from '../../../redux/profile-reducer';
-import { RootStateType } from '../../../redux/redux-store';
+import React from "react"
+import {connect} from "react-redux"
+import {UpdateNewPostActionCreator, addPostActionCreator} from "../../../redux/profile-reducer"
+import MyPosts from "./MyPosts"
+import {RootStateType} from "../../../redux/redux-store"
 
 let mapStateToProps = (state: RootStateType) => {
     return {
@@ -22,6 +22,6 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts)
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
-export default MyPostsContainer;
+export default MyPostsContainer
