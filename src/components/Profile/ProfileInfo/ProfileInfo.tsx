@@ -1,5 +1,5 @@
 import React from "react"
-import s from "./ProfileInfo.module.css"
+import style from "./ProfileInfo.module.css"
 
 function ProfileInfo() {
     return (
@@ -7,7 +7,7 @@ function ProfileInfo() {
             <div>
                 <img src="https://cdn.wpbeaveraddons.com/wp-content/uploads/luca-micheli-422052-unsplash-2.jpg" alt="ProfileImage"/>
             </div>
-            <div className={s.descriptionBlock}>
+            <div className={style.descriptionBlock}>
                 ava + description
             </div>
         </div>

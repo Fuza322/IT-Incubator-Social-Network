@@ -2,14 +2,13 @@ import React, {ChangeEvent} from "react"
 import Message from "./Message/Message"
 import DialogItem from "./DialogItem/DialogItem"
 import {DialogPageType} from "../../redux/dialogs-reducer"
-import s from "./Dialogs.module.css"
+import style from "./Dialogs.module.css"
 
 type DialogPropsType = {
     dialogs: DialogPageType
     updateNewMessageBody: (value: string) => void
     sendMessage: () => void
 }
-
 
 function Dialogs(props: DialogPropsType) {
 
@@ -29,11 +28,11 @@ function Dialogs(props: DialogPropsType) {
     }
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+        <div className={style.dialogs}>
+            <div className={style.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
+            <div className={style.messages}>
                 <div>{messagesElements}</div>
                 <div>
                     <div>

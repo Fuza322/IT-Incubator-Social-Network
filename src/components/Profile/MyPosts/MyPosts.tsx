@@ -1,6 +1,6 @@
 import React from "react"
 import Post, {PostType} from "./Post/Post"
-import s from "./MyPosts.module.css"
+import style from "./MyPosts.module.css"
 
 type MyPostsPropsType = {
     posts: Array<PostType>
@@ -31,13 +31,13 @@ function MyPosts(props: MyPostsPropsType) {
     return (
         <div>
             My posts
-            <div className={s.postsBlock}>
+            <div className={style.postsBlock}>
                 <div>
                     <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <button onClick={onAddPost}>Add post</button>
             </div>
-            <div className={s.posts}>
+            <div className={style.posts}>
                 {postsElements}
             </div>
         </div>

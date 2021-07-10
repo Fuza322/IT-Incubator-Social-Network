@@ -4,6 +4,7 @@ import Header from "./components/Header/Header"
 import Navbar from "./components/Navbar/Navbar"
 import Profile from "./components/Profile/Profile"
 import DialogsContainer from "./components/Dialogs/DialogsContainer"
+import UsersContainer from "./components/Users/UsersContainer"
 import "./App.css"
 
 type AppPropsType = {
@@ -21,7 +22,10 @@ function App(props: AppPropsType) {
                     <DialogsContainer/>
                 }/>
                 <Route path="/profile" render={() =>
-                    <Profile />
+                    <Profile/>
+                }/>
+                <Route path="/users" render={() =>
+                    <UsersContainer/>
                 }/>
             </div>
         </div>

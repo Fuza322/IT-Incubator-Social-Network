@@ -11,7 +11,7 @@ export type ProfilePageType = {
     newPostText: string
 }
 
-export type ProfileActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof UpdateNewPostActionCreator>
+export type ProfileActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostActionCreator>
 
 let initialState = {
     posts: [
@@ -52,7 +52,7 @@ export const addPostActionCreator = () => {
     } as const
 }
 
-export const UpdateNewPostActionCreator = (newText: string) => {
+export const updateNewPostActionCreator = (newText: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: newText

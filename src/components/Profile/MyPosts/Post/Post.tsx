@@ -1,5 +1,5 @@
 import React from "react"
-import s from "./Post.module.css"
+import style from "./Post.module.css"
 
 export type PostType = {
     id: number
@@ -10,7 +10,7 @@ export type PostType = {
 function Post(props: PostType) {
 
     return (
-        <div className={s.item}>
+        <div className={style.item}>
             {/*comment for id*/}
             <div>
                 ID: {props.id}

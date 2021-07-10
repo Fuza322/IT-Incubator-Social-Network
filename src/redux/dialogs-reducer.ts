@@ -11,11 +11,7 @@ export type DialogPageType = {
     newMessageBody: string
 }
 
-export type DialogsActionsType =
-    | ReturnType<typeof SendMessageActionCreator>
-    | ReturnType<typeof UpdateNewMessageTextActionCreator>
-
-let initialState = {
+let initialState: DialogPageType = {
     dialogs: [
         {id: 1, name: "Dimych"},
         {id: 2, name: "Andrey"},
@@ -68,3 +64,7 @@ export const UpdateNewMessageTextActionCreator = (newText: string) => {
         body: newText
     } as const
 }
+
+export type DialogsActionsType =
+    | ReturnType<typeof SendMessageActionCreator>
+    | ReturnType<typeof UpdateNewMessageTextActionCreator>

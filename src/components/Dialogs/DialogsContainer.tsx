@@ -1,8 +1,7 @@
-import React from "react"
 import {connect} from "react-redux"
+import {RootStateType} from "../../redux/redux-store"
 import {UpdateNewMessageTextActionCreator, SendMessageActionCreator} from "../../redux/dialogs-reducer"
 import Dialogs from "./Dialogs"
-import {RootStateType} from "../../redux/redux-store"
 
 let mapStateToProps = (state: RootStateType) => {
     return {
