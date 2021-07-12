@@ -32,4 +32,4 @@ function App(props: AppPropsType) {
     )
 }
 
-export default App;
+export default App

@@ -1,5 +1,7 @@
 import React from "react"
+import axios from "axios"
 import {UserType} from "../../redux/users-reducer"
+import userPhoto from "../../assets/images/user.png"
 import style from "./Users.module.css"
 
 type UsersPropsType = {
@@ -12,31 +14,10 @@ type UsersPropsType = {
 export const Users = (props: UsersPropsType) => {
 
     if (props.users.length === 0) {
-        props.setUsers([
-            {
-                id: 1,
-                photoUrl: "https://nbnews.com.ua/wp-content/uploads/2021/02/imgonline-com-ua-resize-a3jcoto6bgajxvc.jpg",
-                followed: false,
-                fullName: "Dmitry",
-                status: "I am a boss",
-                location: {city: "Minsk", country: "Belarus"}
-            },
-            {
-                id: 2,
-                photoUrl: "https://cdnimg.rg.ru/img/content/182/43/90/46_d_850.jpg",
-                followed: true,
-                fullName: "Sasha",
-                status: "I am a stupid",
-                location: {city: "Moscow", country: "Russia"}
-            },
-            {
-                id: 3,
-                photoUrl: "https://www.belta.by/images/storage/news/with_archive/2020/000022_1608837308_421722_big.jpg",
-                followed: false,
-                fullName: "Andrew",
-                status: "I am a energy",
-                location: {city: "Kiev", country: "Ukraine"}
-            }])
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(res => {
+              props.setUsers(res.data.items)
+            })
     }
 
     return (
@@ -45,7 +26,7 @@ export const Users = (props: UsersPropsType) => {
                 <span>
                     <div>
                         <img
-                            src={u.photoUrl}
+                            src={u.photos.small ? u.photos.small : userPhoto}
                             alt={"User's avatar"}
                             className={style.usersPhoto}
                         />
@@ -58,12 +39,12 @@ export const Users = (props: UsersPropsType) => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullName}</div>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <div>{"u.location.country"}</div>
+                        <div>{"u.location.city"}</div>
                     </span>
                 </span>
             </div>)}
