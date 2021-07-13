@@ -11,21 +11,20 @@ type UsersPropsType = {
     setUsers: (users: Array<UserType>) => void
 }
 
-export const Users = (props: UsersPropsType) => {
+export class Users extends React.Component<UsersPropsType> {
 
-    const getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users")
-                .then(res => {
-                    props.setUsers(res.data.items)
-                })
-        }
+    constructor(props: UsersPropsType) {
+        super(props)
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(res => {
+                this.props.setUsers(res.data.items)
+            })
     }
 
-    return (
-        <div>
-            <button onClick={getUsers}>Get Users</button>
-            {props.users.map(u => <div key={u.id}>
+    render() {
+        return (
+            <div>
+                {this.props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <img
@@ -36,11 +35,11 @@ export const Users = (props: UsersPropsType) => {
                     </div>
                     <div>
                         {u.followed ?
-                            <button onClick={() => props.unfollow(u.id)}>Follow</button>
-                            : <button onClick={() => props.follow(u.id)}>Unfollow</button>}
+                            <button onClick={() => this.props.unfollow(u.id)}>Follow</button>
+                            : <button onClick={() => this.props.follow(u.id)}>Unfollow</button>}
                     </div>
                 </span>
-                <span>
+                    <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -50,7 +49,8 @@ export const Users = (props: UsersPropsType) => {
                         <div>{"u.location.city"}</div>
                     </span>
                 </span>
-            </div>)}
-        </div>
-    )
+                </div>)}
+            </div>
+        )
+    }
 }
