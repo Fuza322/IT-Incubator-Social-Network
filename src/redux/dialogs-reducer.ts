@@ -52,13 +52,13 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Act
     }
 }
 
-export const SendMessageActionCreator = () => {
+export const sendMessageAC = () => {
     return {
         type: SEND_MESSAGE
     } as const
 }
 
-export const UpdateNewMessageTextActionCreator = (newText: string) => {
+export const updateNewMessageTextAC = (newText: string) => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,
         body: newText
@@ -66,5 +66,5 @@ export const UpdateNewMessageTextActionCreator = (newText: string) => {
 }
 
 export type DialogsActionsType =
-    | ReturnType<typeof SendMessageActionCreator>
-    | ReturnType<typeof UpdateNewMessageTextActionCreator>
+    | ReturnType<typeof sendMessageAC>
+    | ReturnType<typeof updateNewMessageTextAC>

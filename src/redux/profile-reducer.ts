@@ -75,11 +75,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
     }
 }
 
-export const addPostActionCreator = () => {
+export const addPostAC = () => {
     return {type: ADD_POST} as const
 }
 
-export const updateNewPostActionCreator = (newText: string) => {
+export const updateNewPostAC = (newText: string) => {
     return {type: UPDATE_NEW_POST_TEXT, newText: newText} as const
 }
 
@@ -88,7 +88,7 @@ export const setUserProfile = (profile: ProfileType) => {
 }
 
 export type ProfileActionsType =
-    ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof updateNewPostActionCreator>
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostAC>
     | ReturnType<typeof setUserProfile>
 export type ActionsType = DialogsActionsType | ProfileActionsType

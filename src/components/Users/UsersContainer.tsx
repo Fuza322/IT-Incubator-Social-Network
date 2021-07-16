@@ -13,18 +13,23 @@ import {
 import {Users} from "./Users"
 import {Preloader} from "../common/Preloader/Preloader"
 
-type UsersContainerPropsType = {
+type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
+
+type MapStateToPropsType = {
     users: Array<UserType>
     pageSize: number
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: Array<UserType>) => void
-    setCurrentPage: (cureent: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
+}
+
+type MapDispatchToPropsType = {
+    follow: (userId: number) => ReturnType<typeof follow>
+    unfollow: (userId: number) => ReturnType<typeof unfollow>
+    setUsers: (users: Array<UserType>) => ReturnType<typeof setUsers>
+    setCurrentPage: (cureent: number) => ReturnType<typeof setCurrentPage>
+    setTotalUsersCount: (totalCount: number) => ReturnType<typeof setTotalUsersCount>
+    toggleIsFetching: (isFetching: boolean) => ReturnType<typeof toggleIsFetching>
 }
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
@@ -69,7 +74,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
