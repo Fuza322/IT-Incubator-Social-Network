@@ -13,8 +13,6 @@ import {
 import {Users} from "./Users"
 import {Preloader} from "../common/Preloader/Preloader"
 
-type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
-
 type MapStateToPropsType = {
     users: Array<UserType>
     pageSize: number
@@ -31,6 +29,8 @@ type MapDispatchToPropsType = {
     setTotalUsersCount: (totalCount: number) => ReturnType<typeof setTotalUsersCount>
     toggleIsFetching: (isFetching: boolean) => ReturnType<typeof toggleIsFetching>
 }
+
+type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
