@@ -1,7 +1,9 @@
 import React from "react"
+import {NavLink} from "react-router-dom"
 import {UserType} from "../../redux/users-reducer"
 import userPhoto from "../../assets/images/user.png"
 import style from "./Users.module.css"
+
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -36,32 +38,39 @@ export const Users = (props: UsersPropsType) => {
                         )
                     })}
                 </div>
-                {props.users.map(u => <div key={u.id}>
-                <span>
-                    <div>
-                        <img
-                            src={u.photos.small ? u.photos.small : userPhoto}
-                            alt={"User's avatar"}
-                            className={style.usersPhoto}
-                        />
-                    </div>
-                    <div>
-                        {u.followed ?
-                            <button onClick={() => props.unfollow(u.id)}>Follow</button>
-                            : <button onClick={() => props.follow(u.id)}>Unfollow</button>}
-                    </div>
-                </span>
-                    <span>
-                    <span>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
-                    </span>
-                    <span>
-                        <div>{"u.location.country"}</div>
-                        <div>{"u.location.city"}</div>
-                    </span>
-                </span>
-                </div>)}
+                {props.users.map(u => {
+                        return (
+                            <div key={u.id}>
+                                <span>
+                                    <div>
+                                        <NavLink to={`/profile/${u.id}`}>
+                                            <img
+                                                src={u.photos.small ? u.photos.small : userPhoto}
+                                                alt={"User's avatar"}
+                                                className={style.usersPhoto}
+                                            />
+                                        </NavLink>
+                                    </div>
+                                    <div>
+                                        {u.followed
+                                            ? <button onClick={() => props.unfollow(u.id)}>Follow</button>
+                                            : <button onClick={() => props.follow(u.id)}>Unfollow</button>}
+                                    </div>
+                                </span>
+                                <span>
+                                    <span>
+                                        <div>{u.name}</div>
+                                        <div>{u.status}</div>
+                                    </span>
+                                    <span>
+                                        <div>{"u.location.country"}</div>
+                                        <div>{"u.location.city"}</div>
+                                    </span>
+                                </span>
+                            </div>
+                        )
+                    }
+                )}
             </div>
         </div>
     )

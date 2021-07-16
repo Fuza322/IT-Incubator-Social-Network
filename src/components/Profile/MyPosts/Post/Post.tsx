@@ -1,13 +1,10 @@
 import React from "react"
+import {PostType} from "../../../../redux/profile-reducer"
 import style from "./Post.module.css"
 
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
+type PostPropsType = PostType
 
-function Post(props: PostType) {
+function Post(props: PostPropsType) {
 
     return (
         <div className={style.item}>
