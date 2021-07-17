@@ -48,7 +48,6 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
             }
         }
         case UNFOLLOW: {
-            debugger
             return {
                 ...state, users: state.users.map(u => {
                         if (u.id === action.userId) {
