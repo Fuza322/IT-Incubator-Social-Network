@@ -1,4 +1,5 @@
 import React from "react"
+import {compose} from "redux"
 import {connect} from "react-redux"
 import {RootStateType} from "../../redux/redux-store"
 import {
@@ -75,10 +76,13 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-export default withAuthRedirect(connect(mapStateToProps, {
-    getUsersTC,
-    followTC,
-    unfollowTC,
-    setCurrentPage,
-    toggleFollowingProgress
-})(UsersContainer))
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        getUsersTC,
+        followTC,
+        unfollowTC,
+        setCurrentPage,
+        toggleFollowingProgress
+    })
+)(UsersContainer)
