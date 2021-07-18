@@ -1,3 +1,5 @@
+import {Dispatch} from "redux"
+import {usersAPI} from "../api/api"
 import {DialogsActionsType} from "./dialogs-reducer"
 
 export const ADD_POST = "ADD-POST"
@@ -72,6 +74,15 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         }
         default:
             return state
+    }
+}
+
+export const getUserProfileTC = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfile(userId)
+            .then(res => {
+                dispatch(setUserProfile(res.data))
+            })
     }
 }
 
