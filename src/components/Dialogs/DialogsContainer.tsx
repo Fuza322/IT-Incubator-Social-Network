@@ -6,6 +6,7 @@ import Dialogs from "./Dialogs"
 
 type MapStateToPropsType = {
     dialogs: DialogPageType
+    isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
@@ -15,7 +16,8 @@ type MapDispatchToPropsType = {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
-        dialogs: state.dialogsPage
+        dialogs: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 

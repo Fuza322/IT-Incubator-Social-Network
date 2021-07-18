@@ -9,7 +9,7 @@ function Navbar() {
                 <NavLink to={"/profile"}>Profile</NavLink>
             </div>
             <div className={`${style.item} ${style.active}`}>
-                <NavLink to={"/dialogs"}>Message</NavLink>
+                <NavLink to={"/dialogs"}>Messages</NavLink>
             </div>
             <div className={`${style.item} ${style.active}`}>
                 <NavLink to={"/users"}>Users</NavLink>
