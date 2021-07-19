@@ -18,9 +18,23 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
         status: this.props.status
     }
 
+    componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<ProfileStatusStateType>) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
+
     activateEditMode = () => {
         this.setState({
             editMode: true
+        })
+    }
+
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            status: e.currentTarget.value
         })
     }
 
@@ -29,12 +43,6 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
             editMode: false
         })
         this.props.updateUserStatus(this.state.status)
-    }
-
-    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            status: e.currentTarget.value
-        })
     }
 
     render() {
