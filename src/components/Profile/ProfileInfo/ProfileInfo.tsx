@@ -1,6 +1,7 @@
 import React from "react"
 import {ProfileType} from "../../../redux/profile-reducer"
 import {Preloader} from "../../common/Preloader/Preloader"
+import ProfileStatus from "./ProfileStatus"
 import style from "./ProfileInfo.module.css"
 
 type ProfileInfoPropsType = {
@@ -15,10 +16,10 @@ function ProfileInfo(props: ProfileInfoPropsType) {
 
     return (
         <div>
-            <div>
-                <img src="https://cdn.wpbeaveraddons.com/wp-content/uploads/luca-micheli-422052-unsplash-2.jpg"
-                     alt="ProfileImage"/>
-            </div>
+            {/*<div>*/}
+            {/*    <img src="https://cdn.wpbeaveraddons.com/wp-content/uploads/luca-micheli-422052-unsplash-2.jpg"*/}
+            {/*         alt="ProfileImage"/>*/}
+            {/*</div>*/}
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.large} alt="Profile avatar"/>
                 {props.profile.fullName
@@ -35,6 +36,9 @@ function ProfileInfo(props: ProfileInfoPropsType) {
                     </div>
                     : null
                 }
+                <ProfileStatus
+                    status={"Hello my friends"}
+                />
                 {props.profile.contacts.facebook
                     ? <div>
                         Facebook:
