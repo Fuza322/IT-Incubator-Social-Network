@@ -6,6 +6,8 @@ import style from "./ProfileInfo.module.css"
 
 type ProfileInfoPropsType = {
     profile: ProfileType
+    status: string
+    updateUserStatus: (status: string) => void
 }
 
 function ProfileInfo(props: ProfileInfoPropsType) {
@@ -37,7 +39,8 @@ function ProfileInfo(props: ProfileInfoPropsType) {
                     : null
                 }
                 <ProfileStatus
-                    status={"Hello my friends"}
+                    status={props.status}
+                    updateUserStatus={props.updateUserStatus}
                 />
                 {props.profile.contacts.facebook
                     ? <div>
