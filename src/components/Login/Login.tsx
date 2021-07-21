@@ -1,33 +1,39 @@
 import React from "react"
+import {connect} from "react-redux"
+import {Redirect} from "react-router-dom"
 import {reduxForm, Field, InjectedFormProps} from "redux-form"
+import {RootStateType} from "../../redux/redux-store"
+import {loginUserTC} from "../../redux/auth-reducer"
 import {required, maxLenghtCreator} from "../../utils/validators/validators"
 import {FormElementInput} from "../common/FormControls/FormControls"
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 }
 
-const maxLength10 = maxLenghtCreator(10)
+const maxLength40 = maxLenghtCreator(40)
 
 const LoginForm = (props: InjectedFormProps<FormDataType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field
-                    name={"login"}
-                    placeholder={"Login"}
+                    type={"text"}
+                    name={"email"}
+                    placeholder={"E-mail"}
                     component={FormElementInput}
-                    validate={[required, maxLength10]}
+                    validate={[required, maxLength40]}
                 />
             </div>
             <div>
                 <Field
+                    type={"password"}
                     name={"password"}
                     placeholder={"Password"}
                     component={FormElementInput}
-                    validate={[required, maxLength10]}
+                    validate={[required, maxLength40]}
                 />
             </div>
             <div>
@@ -44,14 +50,25 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
     )
 }
 
-type LoginPropsType = {}
+type MapStateToPropsType = {
+    isAuth: boolean
+}
+
+type LoginPropsType = {
+    isAuth: boolean
+    loginUserTC: (email: string, password: string, rememberMe: boolean) => void
+}
 
 const LoginReduxForm = reduxForm<FormDataType>({form: "LoginForm"})(LoginForm)
 
-export const Login = (props: LoginPropsType) => {
+const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.loginUserTC(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
     }
 
     return (
@@ -61,3 +78,11 @@ export const Login = (props: LoginPropsType) => {
         </div>
     )
 }
+
+const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+
+export default connect(mapStateToProps, {loginUserTC})(Login)

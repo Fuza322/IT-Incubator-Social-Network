@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/Navbar"
 import DialogsContainer from "./components/Dialogs/DialogsContainer"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import UsersContainer from "./components/Users/UsersContainer"
-import {Login} from "./components/Login/Login"
+import Login from "./components/Login/Login"
 import "./App.css"
 
 type AppPropsType = {}
