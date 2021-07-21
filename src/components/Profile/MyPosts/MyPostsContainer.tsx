@@ -21,7 +21,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         addPost: (newPostText: string) => {
-            console.log(newPostText)
             dispatch(addPostAC(newPostText))
         }
     }

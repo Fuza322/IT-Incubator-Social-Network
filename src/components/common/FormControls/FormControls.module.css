@@ -1,0 +1,8 @@
+.error {
+    border: 2px solid red;
+}
+
+.spanError {
+    color: red;
+    margin: 5px;
+}
