@@ -26,9 +26,13 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
     )
 }
 
+type LoginPropsType = {
+
+}
+
 const LoginReduxForm = reduxForm<FormDataType>({form: "LoginForm"})(LoginForm)
 
-export const Login = () => {
+export const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: FormDataType) => {
         console.log(formData)

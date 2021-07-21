@@ -3,7 +3,6 @@ import {profileAPI, usersAPI} from "../api/api"
 import {DialogsActionsType} from "./dialogs-reducer"
 
 export const ADD_POST = "ADD-POST"
-export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 export const SET_USER_PROFILE = "SET_USER_PROFILE"
 export const SET_USER_STATUS = "SET_USER_STATUS"
 
@@ -38,7 +37,6 @@ export type PostType = {
 export type ProfilePageType = {
     profile: ProfileType | null
     posts: Array<PostType>
-    newPostText: string
     status: string
 }
 
@@ -48,7 +46,6 @@ let initialState = {
         {id: 1, message: "Hi, how are you?", likesCount: 12},
         {id: 2, message: "It is my first post", likesCount: 11}
     ],
-    newPostText: "",
     status: ""
 }
 
@@ -57,19 +54,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         case ADD_POST: {
             let newPost: PostType = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0
             }
             return {
                 ...state,
-                posts: [...state.posts, newPost],
-                newPostText: ""
-            }
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
+                posts: [newPost, ...state.posts]
             }
         }
         case SET_USER_PROFILE: {
@@ -115,12 +105,8 @@ export const updateUserStatusTC = (status: string) => {
     }
 }
 
-export const addPostAC = () => {
-    return {type: ADD_POST} as const
-}
-
-export const updateNewPostAC = (newText: string) => {
-    return {type: UPDATE_NEW_POST_TEXT, newText: newText} as const
+export const addPostAC = (newPostText: string) => {
+    return {type: ADD_POST, newPostText: newPostText} as const
 }
 
 export const setUserProfile = (profile: ProfileType) => {
@@ -133,7 +119,6 @@ export const setUserStatusAC = (status: string) => {
 
 export type ProfileActionsType =
     ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostAC>
     | ReturnType<typeof setUserStatusAC>
     | ReturnType<typeof setUserProfile>
 export type ActionsType = DialogsActionsType | ProfileActionsType
