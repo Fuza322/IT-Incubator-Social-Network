@@ -10,7 +10,6 @@ import {
     toggleFollowingProgress,
     UserType
 } from "../../redux/users-reducer"
-import {withAuthRedirect} from "../../hoc/withAuthRedirect"
 import {Users} from "./Users"
 import {Preloader} from "../common/Preloader/Preloader"
 
@@ -77,7 +76,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
 }
 
 export default compose<React.ComponentType>(
-    withAuthRedirect,
+    // withAuthRedirect,
     connect(mapStateToProps, {
         getUsersTC,
         followTC,

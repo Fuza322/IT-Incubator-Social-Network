@@ -4,7 +4,6 @@ import {compose} from "redux"
 import {connect} from "react-redux"
 import {RootStateType} from "../../redux/redux-store"
 import {ProfileType, getUserProfileTC, getUserStatusTC, updateUserStatusTC} from "../../redux/profile-reducer"
-import {withAuthRedirect} from "../../hoc/withAuthRedirect"
 import Profile from "./Profile"
 
 type PathParamsType = {
@@ -32,6 +31,9 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         let userId = Number(this.props.match.params.userId)
         if (!userId) {
             userId  = Number(this.props.authorizedUserId)
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfileTC(userId)
         this.props.getUserStatusTC(userId)

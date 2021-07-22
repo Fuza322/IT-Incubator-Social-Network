@@ -6,21 +6,21 @@ import {RootStateType} from "./redux-store"
 
 export const SET_USER_DATA = "SET_USER_DATA"
 
-export type AuthType = {
+export type AuthStateType = {
     userId: number | null
     email: string | null
     login: string | null
     isAuth: boolean
 }
 
-let initialState: AuthType = {
+let initialState: AuthStateType = {
     userId: null,
     email: null,
     login: null,
     isAuth: false
 }
 
-export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
+export const authReducer = (state: AuthStateType = initialState, action: ActionsType): AuthStateType => {
     switch (action.type) {
         case SET_USER_DATA: {
             return {
@@ -35,7 +35,7 @@ export const authReducer = (state: AuthType = initialState, action: ActionsType)
 
 export const getAuthUserDataTC = () => {
     return (dispatch: Dispatch) => {
-        authAPI.me()
+       return authAPI.me()
             .then(res => {
                 if (res.data.resultCode === 0) {
                     let {id, email, login} = res.data.data
