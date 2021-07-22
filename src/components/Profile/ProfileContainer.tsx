@@ -18,9 +18,9 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    getUserProfileTC: (userId: number) => void
-    getUserStatusTC: (userId: number) => void
-    updateUserStatusTC: (status: string) => void
+    getUserProfile: (userId: number) => void
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
 }
 
 type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamsType>
@@ -35,8 +35,8 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
                 this.props.history.push('/login')
             }
         }
-        this.props.getUserProfileTC(userId)
-        this.props.getUserStatusTC(userId)
+        this.props.getUserProfile(userId)
+        this.props.getUserStatus(userId)
     }
 
     render() {
@@ -46,7 +46,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
                     ? <Profile
                         profile={this.props.profile}
                         status={this.props.status}
-                        updateUserStatus={this.props.updateUserStatusTC}
+                        updateUserStatus={this.props.updateUserStatus}
                     />
                     : null
                 }
@@ -66,9 +66,9 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {
-        getUserProfileTC,
-        getUserStatusTC,
-        updateUserStatusTC}),
+        getUserProfile: getUserProfileTC,
+        getUserStatus: getUserStatusTC,
+        updateUserStatus: updateUserStatusTC}),
     withRouter,
     // withAuthRedirect
 )(ProfileContainer)

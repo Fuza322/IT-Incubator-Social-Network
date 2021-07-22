@@ -80,7 +80,7 @@ export const getUserProfileTC = (userId: number) => {
     return (dispatch: Dispatch) => {
         usersAPI.getProfile(userId)
             .then(res => {
-                dispatch(setUserProfile(res.data))
+                dispatch(setUserProfileAC(res.data))
             })
     }
 }
@@ -109,7 +109,7 @@ export const addPostAC = (newPostText: string) => {
     return {type: ADD_POST, newPostText: newPostText} as const
 }
 
-export const setUserProfile = (profile: ProfileType) => {
+export const setUserProfileAC = (profile: ProfileType) => {
     return {type: SET_USER_PROFILE, profile: profile} as const
 }
 
@@ -120,5 +120,5 @@ export const setUserStatusAC = (status: string) => {
 export type ProfileActionsType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserStatusAC>
-    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserProfileAC>
 export type ActionsType = DialogsActionsType | ProfileActionsType

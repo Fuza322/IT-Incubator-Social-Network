@@ -12,7 +12,6 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
-    // error: string
 }
 
 const maxLength40 = maxLenghtCreator(40)
@@ -46,9 +45,9 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
                 /> Remember me
             </div>
             {props.error &&
-                <div className={style.formSummaryError}>
-                    {props.error}
-                </div>
+            <div className={style.formSummaryError}>
+                {props.error}
+            </div>
             }
             <div>
                 <button>Log in</button>
@@ -63,7 +62,7 @@ type MapStateToPropsType = {
 
 type LoginPropsType = {
     isAuth: boolean
-    loginUserTC: (email: string, password: string, rememberMe: boolean) => void
+    loginUser: (email: string, password: string, rememberMe: boolean) => void
 }
 
 const LoginReduxForm = reduxForm<FormDataType>({form: "LoginForm"})(LoginForm)
@@ -71,7 +70,7 @@ const LoginReduxForm = reduxForm<FormDataType>({form: "LoginForm"})(LoginForm)
 const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: FormDataType) => {
-        props.loginUserTC(formData.email, formData.password, formData.rememberMe)
+        props.loginUser(formData.email, formData.password, formData.rememberMe)
     }
 
     if (props.isAuth) {
@@ -92,4 +91,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-export default connect(mapStateToProps, {loginUserTC})(Login)
+export default connect(mapStateToProps, {
+    loginUser: loginUserTC
+})(Login)

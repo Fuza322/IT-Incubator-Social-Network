@@ -6,8 +6,8 @@ import {
     getUsersTC,
     followTC,
     unfollowTC,
-    setCurrentPage,
-    toggleFollowingProgress,
+    setCurrentPageAC,
+    toggleFollowingProgressAC,
     UserType
 } from "../../redux/users-reducer"
 import {Users} from "./Users"
@@ -23,11 +23,11 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    getUsersTC: (currentPage: number, pageSize: number) => void
-    followTC: (userId: number) => void
-    unfollowTC: (userId: number) => void
-    setCurrentPage: (cureent: number) => ReturnType<typeof setCurrentPage>
-    toggleFollowingProgress: (isFetching: boolean, userId: number) => ReturnType<typeof toggleFollowingProgress>
+    getUsers: (currentPage: number, pageSize: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setCurrentPage: (cureent: number) => ReturnType<typeof setCurrentPageAC>
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => ReturnType<typeof toggleFollowingProgressAC>
 }
 
 type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -35,11 +35,11 @@ type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsersTC(pageNumber, this.props.pageSize)
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -54,8 +54,8 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
                     followingInProgress={this.props.followingInProgress}
-                    follow={this.props.followTC}
-                    unfollow={this.props.unfollowTC}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
                     onPageChanged={this.onPageChanged}
                     toggleFollowingProgress={this.props.toggleFollowingProgress}
                 />
@@ -78,10 +78,10 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
 export default compose<React.ComponentType>(
     // withAuthRedirect,
     connect(mapStateToProps, {
-        getUsersTC,
-        followTC,
-        unfollowTC,
-        setCurrentPage,
-        toggleFollowingProgress
+        getUsers: getUsersTC,
+        follow: followTC,
+        unfollow: unfollowTC,
+        setCurrentPage: setCurrentPageAC,
+        toggleFollowingProgress: toggleFollowingProgressAC
     })
 )(UsersContainer)

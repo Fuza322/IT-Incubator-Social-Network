@@ -20,13 +20,13 @@ type MapStateToPropsPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    initializeAppTC: () => void
+    initializeApp: () => void
 }
 
 class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
-        this.props.initializeAppTC()
+        this.props.initializeApp()
     }
 
     render() {
@@ -66,4 +66,4 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsPropsType => {
 
 export default compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps, {initializeAppTC}))(App)
+    connect(mapStateToProps, {initializeApp: initializeAppTC}))(App)
