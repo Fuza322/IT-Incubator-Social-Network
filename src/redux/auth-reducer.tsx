@@ -1,7 +1,8 @@
 import {Dispatch} from "redux"
+import {ThunkAction, ThunkDispatch} from "redux-thunk"
+import {stopSubmit, FormAction} from "redux-form"
 import {authAPI} from "../api/api"
 import {RootStateType} from "./redux-store"
-import {ThunkAction, ThunkDispatch} from "redux-thunk"
 
 export const SET_USER_DATA = "SET_USER_DATA"
 
@@ -45,13 +46,18 @@ export const getAuthUserDataTC = () => {
 }
 
 export const loginUserTC = (email: string, password: string, rememberMe: boolean): ThunkType => {
-    return (dispatch: ThunkDispatch<RootStateType, unknown, ActionsType>) => {
+    return (dispatch: ThunkDispatch<RootStateType, unknown, ActionsType | FormAction>) => {
+
         authAPI.login(email, password, rememberMe)
             .then(res => {
                 if (res.data.resultCode === 0) {
                     dispatch(getAuthUserDataTC())
+                } else {
+                    let message = res.data.messages.length > 0 ? res.data.messages[0] : "Some error"
+                    dispatch(stopSubmit("LoginForm", {_error: message}))
                 }
             })
+
     }
 }
 
@@ -71,4 +77,5 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
 }
 
 type ThunkType = ThunkAction<void, RootStateType, unknown, ActionsType>
-export type ActionsType = ReturnType<typeof setAuthUserData>
+export type ActionsType =
+    ReturnType<typeof setAuthUserData>

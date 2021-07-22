@@ -6,11 +6,13 @@ import {RootStateType} from "../../redux/redux-store"
 import {loginUserTC} from "../../redux/auth-reducer"
 import {required, maxLenghtCreator} from "../../utils/validators/validators"
 import {FormElementInput} from "../common/FormControls/FormControls"
+import style from "./Login.module.css"
 
 type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    // error: string
 }
 
 const maxLength40 = maxLenghtCreator(40)
@@ -43,6 +45,11 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
                     component={"input"}
                 /> Remember me
             </div>
+            {props.error &&
+                <div className={style.formSummaryError}>
+                    {props.error}
+                </div>
+            }
             <div>
                 <button>Log in</button>
             </div>
