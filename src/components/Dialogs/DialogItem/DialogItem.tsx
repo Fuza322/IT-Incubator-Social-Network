@@ -7,14 +7,10 @@ export type DialogItemType = {
     name: string
 }
 
-function DialogItem(props: DialogItemType) {
-    let path = "/dialogs/" + props.id
-
+export const DialogItem = React.memo((props: DialogItemType) => {
     return (
         <div className={s.dialog + " " + s.active}>
-            <NavLink to={path}>{props.name}</NavLink>
+            <NavLink to={"/dialogs/" + props.id}>{props.name}</NavLink>
         </div>
     )
-}
-
-export default DialogItem
+})

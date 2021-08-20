@@ -2,7 +2,7 @@ import React from "react"
 import {NavLink} from "react-router-dom"
 import style from "./Navbar.module.css"
 
-function Navbar() {
+export const Navbar = React.memo(() => {
     return (
         <nav className={style.nav}>
             <div className={`${style.item} ${style.active}`}>
@@ -25,6 +25,4 @@ function Navbar() {
             </div>
         </nav>
     )
-}
-
-export default Navbar
+})

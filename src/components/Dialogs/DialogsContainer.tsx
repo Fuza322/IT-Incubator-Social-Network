@@ -4,7 +4,7 @@ import {compose, Dispatch} from "redux"
 import {RootStateType} from "../../redux/redux-store"
 import {sendMessageAC, DialogPageType} from "../../redux/dialogs-reducer"
 import {withAuthRedirect} from "../../hoc/withAuthRedirect"
-import Dialogs from "./Dialogs"
+import {Dialogs} from "./Dialogs"
 
 type MapStateToPropsType = {
     dialogs: DialogPageType

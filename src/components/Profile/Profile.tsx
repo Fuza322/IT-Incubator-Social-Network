@@ -1,7 +1,7 @@
 import React from "react"
-import ProfileInfo from "./ProfileInfo/ProfileInfo"
-import MyPostsContainer from "./MyPosts/MyPostsContainer"
 import {ProfileType} from "../../redux/profile-reducer"
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo"
+import MyPostsContainer from "./MyPosts/MyPostsContainer"
 
 type ProfilePropsType = {
     profile: ProfileType
@@ -9,7 +9,7 @@ type ProfilePropsType = {
     updateUserStatus: (status: string) => void
 }
 
-function Profile(props: ProfilePropsType) {
+export const Profile = React.memo((props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo
@@ -20,6 +20,4 @@ function Profile(props: ProfilePropsType) {
             <MyPostsContainer/>
         </div>
     )
-}
-
-export default Profile
+})

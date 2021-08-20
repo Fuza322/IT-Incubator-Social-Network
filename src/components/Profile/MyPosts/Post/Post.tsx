@@ -4,15 +4,10 @@ import style from "./Post.module.css"
 
 type PostPropsType = PostType
 
-function Post(props: PostPropsType) {
-
+export const Post = React.memo((props: PostPropsType) => {
     return (
         <div className={style.item}>
-            {/*comment for id*/}
-            <div>
-                ID: {props.id}
-            </div>
-            {/*comment for id*/}
+            <div>ID: {props.id}</div>
             <img
                 src="https://img.favpng.com/21/4/9/portable-network-graphics-avatar-computer-icons-image-social-media-png-favpng-r3ez8qWcYdM8jGVn2b5TGhvS8.jpg"
                 alt="UserPostImage"/>
@@ -22,6 +17,4 @@ function Post(props: PostPropsType) {
             </div>
         </div>
     )
-}
-
-export default Post
+})

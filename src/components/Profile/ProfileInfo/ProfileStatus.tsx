@@ -10,8 +10,7 @@ type ProfileStatusStateType = {
     status: string
 }
 
-
-class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatusStateType> {
+export class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatusStateType> {
 
     state = {
         editMode: false,
@@ -50,7 +49,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
             <div>
                 {!this.state.editMode
                     ? <div>
-                        <span onDoubleClick={this.activateEditMode}>{this.props.status || "-----"}</span>
+                        <span onDoubleClick={this.activateEditMode}>{this.props.status || "Empty"}</span>
                     </div>
                     : <div>
                         <input
@@ -59,11 +58,8 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
                             onChange={this.onStatusChange}
                             autoFocus onBlur={this.deactivateEditMode}
                         />
-                    </div>
-                }
+                    </div>}
             </div>
         )
     }
 }
-
-export default ProfileStatus

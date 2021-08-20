@@ -8,7 +8,7 @@ type HeaderPropsType = {
     logoutUser: () => void
 }
 
-function Header(props: HeaderPropsType) {
+export const Header = React.memo((props: HeaderPropsType) => {
     return (
         <header className={style.header}>
             <img
@@ -24,6 +24,4 @@ function Header(props: HeaderPropsType) {
             </div>
         </header>
     )
-}
-
-export default Header
+})

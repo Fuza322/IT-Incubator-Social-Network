@@ -4,16 +4,14 @@ import {compose} from "redux"
 import {connect} from "react-redux"
 import {RootStateType} from "./redux/redux-store"
 import {initializeAppTC} from "./redux/app-reducer"
+import {Navbar} from "./components/Navbar/Navbar"
 import HeaderContainer from "./components/Header/HeaderContainer"
-import Navbar from "./components/Navbar/Navbar"
 import DialogsContainer from "./components/Dialogs/DialogsContainer"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import UsersContainer from "./components/Users/UsersContainer"
 import Login from "./components/Login/Login"
 import {Preloader} from "./components/common/Preloader/Preloader"
 import "./App.css"
-
-type AppPropsType = MapStateToPropsPropsType & MapDispatchToPropsType
 
 type MapStateToPropsPropsType = {
     initialized: boolean
@@ -22,6 +20,8 @@ type MapStateToPropsPropsType = {
 type MapDispatchToPropsType = {
     initializeApp: () => void
 }
+
+type AppPropsType = MapStateToPropsPropsType & MapDispatchToPropsType
 
 class App extends React.Component<AppPropsType> {
 
@@ -66,4 +66,5 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsPropsType => {
 
 export default compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps, {initializeApp: initializeAppTC}))(App)
+    connect(mapStateToProps, {initializeApp: initializeAppTC})
+)(App)

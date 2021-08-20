@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useCallback} from "react"
 import {connect} from "react-redux"
 import {Redirect} from "react-router-dom"
 import {reduxForm, Field, InjectedFormProps} from "redux-form"
@@ -16,7 +16,7 @@ type FormDataType = {
 
 const maxLength40 = maxLenghtCreator(40)
 
-const LoginForm = (props: InjectedFormProps<FormDataType>) => {
+const LoginForm = React.memo((props: InjectedFormProps<FormDataType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -42,19 +42,20 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
                     type={"checkbox"}
                     name={"rememberMe"}
                     component={"input"}
-                /> Remember me
+                />Remember me
             </div>
             {props.error &&
             <div className={style.formSummaryError}>
                 {props.error}
-            </div>
-            }
+            </div>}
             <div>
                 <button>Log in</button>
             </div>
         </form>
     )
-}
+})
+
+const LoginReduxForm = reduxForm<FormDataType>({form: "LoginForm"})(LoginForm)
 
 type MapStateToPropsType = {
     isAuth: boolean
@@ -65,13 +66,11 @@ type LoginPropsType = {
     loginUser: (email: string, password: string, rememberMe: boolean) => void
 }
 
-const LoginReduxForm = reduxForm<FormDataType>({form: "LoginForm"})(LoginForm)
+const Login = React.memo((props: LoginPropsType) => {
 
-const Login = (props: LoginPropsType) => {
-
-    const onSubmit = (formData: FormDataType) => {
+    const onSubmit = useCallback((formData: FormDataType) => {
         props.loginUser(formData.email, formData.password, formData.rememberMe)
-    }
+    }, [props])
 
     if (props.isAuth) {
         return <Redirect to={"/profile"}/>
@@ -83,7 +82,7 @@ const Login = (props: LoginPropsType) => {
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     )
-}
+})
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {

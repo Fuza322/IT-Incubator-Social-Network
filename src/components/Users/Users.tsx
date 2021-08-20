@@ -16,11 +16,11 @@ type UsersPropsType = {
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
-export const Users = (props: UsersPropsType) => {
+export const Users = React.memo((props: UsersPropsType) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
-    let pages = []
+    const pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
@@ -28,20 +28,19 @@ export const Users = (props: UsersPropsType) => {
     return (
         <div>
             <div>
-                <div>
-                    {pages.map(pageNumber => {
-                        return (
-                            <span
-                                key={pageNumber}
-                                onClick={() => props.onPageChanged(pageNumber)}
-                                className={props.currentPage === pageNumber ? style.selectedPage : ""}>{pageNumber}
+                {pages.map(pageNumber => {
+                    return (
+                        <span
+                            key={pageNumber}
+                            onClick={() => props.onPageChanged(pageNumber)}
+                            className={props.currentPage === pageNumber ? style.selectedPage : ""}>{pageNumber}
                             </span>
-                        )
-                    })}
-                </div>
-                {props.users.map(u => {
-                        return (
-                            <div key={u.id}>
+                    )
+                })}
+            </div>
+            {props.users.map(u => {
+                    return (
+                        <div key={u.id}>
                                 <span>
                                     <div>
                                         <NavLink to={`/profile/${u.id}`}>
@@ -68,21 +67,16 @@ export const Users = (props: UsersPropsType) => {
                                             </button>}
                                     </div>
                                 </span>
-                                <span>
-                                    <span>
-                                        <div>{u.name}</div>
-                                        <div>{u.status}</div>
-                                    </span>
-                                    <span>
-                                        <div>{"u.location.country"}</div>
-                                        <div>{"u.location.city"}</div>
-                                    </span>
+                            <span>
+                                    <div>
+                                        <span>{u.name}</span>
+                                        <span>{u.status}</span>
+                                    </div>
                                 </span>
-                            </div>
-                        )
-                    }
-                )}
-            </div>
+                        </div>
+                    )
+                }
+            )}
         </div>
     )
-}
+})

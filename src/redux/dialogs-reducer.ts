@@ -1,6 +1,6 @@
 import {DialogItemType} from "../components/Dialogs/DialogItem/DialogItem"
 import {MessageType} from "../components/Dialogs/Message/Message"
-import {ActionsType} from "./profile-reducer"
+import {AppActionsType} from "./redux-store"
 
 export const SEND_MESSAGE = "SEND-MESSAGE"
 
@@ -28,10 +28,10 @@ const initialState: DialogPageType = {
     ]
 }
 
-export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {
+export const dialogsReducer = (state: DialogPageType = initialState, action: AppActionsType): DialogPageType => {
     switch (action.type) {
         case SEND_MESSAGE: {
-            let body = action.newMessageBody
+            const body = action.newMessageBody
             return {
                 ...state,
                 messages: [...state.messages, {id: 7, message: body}]
@@ -42,9 +42,7 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Act
     }
 }
 
-export const sendMessageAC = (newMessageBody: string) => {
-    return {type: SEND_MESSAGE, newMessageBody: newMessageBody} as const
-}
+export const sendMessageAC = (newMessageBody: string) => (
+    {type: SEND_MESSAGE, newMessageBody: newMessageBody} as const)
 
-export type DialogsActionsType =
-    ReturnType<typeof sendMessageAC>
+export type DialogsActionsType = ReturnType<typeof sendMessageAC>

@@ -1,15 +1,13 @@
 import React from "react"
-import s from "./../Dialogs.module.css"
+import style from "./../Dialogs.module.css"
 
 export type MessageType = {
     id: number
     message: string
 }
 
-function Message(props: MessageType) {
+export const Message = React.memo((props: MessageType) => {
     return (
-        <div className={s.message}>{props.message}</div>
+        <div className={style.message}>{props.message}</div>
     )
-}
-
-export default Message
+})

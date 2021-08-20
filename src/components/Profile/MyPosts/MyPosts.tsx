@@ -1,9 +1,9 @@
-import React from "react"
+import React, {useCallback} from "react"
 import {reduxForm, Field, InjectedFormProps} from "redux-form"
-import {required, maxLenghtCreator} from "../../../utils/validators/validators"
-import {FormElementTextArea} from "../../common/FormControls/FormControls"
-import Post from "./Post/Post"
 import {PostType} from "../../../redux/profile-reducer"
+import {FormElementTextArea} from "../../common/FormControls/FormControls"
+import {Post} from "./Post/Post"
+import {required, maxLenghtCreator} from "../../../utils/validators/validators"
 import style from "./MyPosts.module.css"
 
 type PostFormTextType = {
@@ -12,7 +12,7 @@ type PostFormTextType = {
 
 const maxLenght50 = maxLenghtCreator(50)
 
-const AddNewPostForm = (props: InjectedFormProps<PostFormTextType>) => {
+const AddNewPostForm = React.memo((props: InjectedFormProps<PostFormTextType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -26,22 +26,22 @@ const AddNewPostForm = (props: InjectedFormProps<PostFormTextType>) => {
             <button>Add post</button>
         </form>
     )
-}
+})
+
+const AddNewPostReduxForm = reduxForm<PostFormTextType>({form: "ProfileAddNewPostForm"})(AddNewPostForm)
 
 type MyPostsPropsType = {
     posts: Array<PostType>
     addPost: (values: string) => void
 }
 
-const AddNewPostReduxForm = reduxForm<PostFormTextType>({form: "ProfileAddNewPostForm"})(AddNewPostForm)
+export const MyPosts = React.memo((props: MyPostsPropsType) => {
 
-function MyPosts(props: MyPostsPropsType) {
+    const postsElements = props.posts.map(p => <Post id={p.id} key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
-    let postsElements = props.posts.map(p => <Post id={p.id} key={p.id} message={p.message} likesCount={p.likesCount}/>)
-
-    const onAddPost = (values: PostFormTextType) => {
+    const onAddPost = useCallback((values: PostFormTextType) => {
         props.addPost(values.newPostText)
-    }
+    }, [props])
 
     return (
         <div>
@@ -52,6 +52,4 @@ function MyPosts(props: MyPostsPropsType) {
             </div>
         </div>
     )
-}
-
-export default MyPosts
+})
